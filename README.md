@@ -115,7 +115,7 @@ A clean and simple form interface for adding and managing shipment records.
 
 View all shipment details in an easy-to-read table format.
 
-![Screenshot 2024-11-25 155102](https://github.com/user-attachments/assets/4ee61cc4-3bdb-48dd-b225-86f521c1f877)
+![Screenshot 2024-11-25 165038](https://github.com/user-attachments/assets/bb37585d-f5cb-4c97-8613-e0238e5c44c1)
 
 
 ## Sources
