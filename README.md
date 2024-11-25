@@ -76,28 +76,6 @@ Scalable Architecture: Ready to accommodate additional features like search and 
 ![Screenshot 2024-11-25 164541](https://github.com/user-attachments/assets/7a50e603-5f89-40ca-8ea9-7b8c3e666e68)
 
 
-### Edit a Shipment Record
-
-### Input:
-
-
-{
-  "shipmentNo": "34",
-  "description": "Updated description: Electronics shipment for Black Friday sale",
-  "source": "San Francisco",
-  "destination": "Chicago",
-  "shippingDate": "2024-11-30",
-  "expectedDeliveryDate": "2024-12-05"
-}
-
-
-### Response:
-
-{
-  "status": "success",
-  "message": "Shipment record updated successfully"
-}
-
 ### Project Status: Done
 
 
