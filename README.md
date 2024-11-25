@@ -55,7 +55,7 @@ Scalable Architecture: Ready to accommodate additional features like search and 
 
 {
   "shipmentNo": "34",
-  "description": "Electronics shipment for holiday season",
+  "description": "Electronics shipment for retail store",
   "source": "San Francisco",
   "destination": "New York",
   "shippingDate": "2024-11-30",
