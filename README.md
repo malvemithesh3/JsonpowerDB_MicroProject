@@ -2,9 +2,9 @@
 
 ## Title of the Project
 
-##Shipment Management Form with JsonPowerDB
+## Shipment Management Form with JsonPowerDB
 
-##Description
+## Description
 
 The Shipment Management Form is a web application designed to streamline the management of shipment details, including adding, editing, and viewing records. This implementation leverages JsonPowerDB (JPDB), a high-performance NoSQL database, for rapid and efficient data handling.
 
@@ -62,6 +62,9 @@ Scalable Architecture: Ready to accommodate additional features like search and 
   "expectedDeliveryDate": "2024-12-05"
 }
 
+![Screenshot 2024-11-25 154651](https://github.com/user-attachments/assets/0acfdaac-2b36-446b-a72c-5cb03831a93d)
+
+
 ### Response:
 
 
@@ -70,8 +73,10 @@ Scalable Architecture: Ready to accommodate additional features like search and 
   "message": "Shipment record added successfully"
 }
 
+![Screenshot 2024-11-25 154651](https://github.com/user-attachments/assets/bab05126-adc8-436b-a17f-5f4a235cdd8d)
 
-###Edit a Shipment Record
+
+### Edit a Shipment Record
 
 ### Input:
 
@@ -85,15 +90,17 @@ Scalable Architecture: Ready to accommodate additional features like search and 
   "expectedDeliveryDate": "2024-12-05"
 }
 
-### Response:
+![Screenshot 2024-11-25 154819](https://github.com/user-attachments/assets/b21a4769-3d3d-442b-adfd-f374d7c4dd98)
 
+
+### Response:
 
 {
   "status": "success",
   "message": "Shipment record updated successfully"
 }
 
-###Project Status: Done
+### Project Status: Done
 
 
 ## Illustrations
@@ -110,7 +117,7 @@ A clean and simple form interface for adding and managing shipment records.
 
 View all shipment details in an easy-to-read table format.
 
-(You can add screenshots of your UI here to enhance the README.)
+![Screenshot 2024-11-25 155102](https://github.com/user-attachments/assets/4ee61cc4-3bdb-48dd-b225-86f521c1f877)
 
 
 ## Sources
