@@ -54,7 +54,7 @@ Scalable Architecture: Ready to accommodate additional features like search and 
 ### Input:
 
 {
-  "shipmentNo": "SHP004",
+  "shipmentNo": "34",
   "description": "Electronics shipment for holiday season",
   "source": "San Francisco",
   "destination": "New York",
@@ -73,7 +73,7 @@ Scalable Architecture: Ready to accommodate additional features like search and 
   "message": "Shipment record added successfully"
 }
 
-![Screenshot 2024-11-25 154651](https://github.com/user-attachments/assets/bab05126-adc8-436b-a17f-5f4a235cdd8d)
+![Screenshot 2024-11-25 164541](https://github.com/user-attachments/assets/7a50e603-5f89-40ca-8ea9-7b8c3e666e68)
 
 
 ### Edit a Shipment Record
@@ -82,15 +82,13 @@ Scalable Architecture: Ready to accommodate additional features like search and 
 
 
 {
-  "shipmentNo": "SHP004",
+  "shipmentNo": "34",
   "description": "Updated description: Electronics shipment for Black Friday sale",
   "source": "San Francisco",
-  "destination": "New York",
+  "destination": "Chicago",
   "shippingDate": "2024-11-30",
   "expectedDeliveryDate": "2024-12-05"
 }
-
-![Screenshot 2024-11-25 154819](https://github.com/user-attachments/assets/b21a4769-3d3d-442b-adfd-f374d7c4dd98)
 
 
 ### Response:
