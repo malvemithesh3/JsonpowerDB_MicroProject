@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Shipment Management Form</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Shipment Management Form</h2>
+      <form id="shipmentForm" method="post">
+        <div class="form-group">
+          <label for="shipmentNo">Shipment No:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="shipmentNo"
+            onchange="getShipment()"
+            placeholder="Enter Shipment No"
+            name="shipmentNo"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            placeholder="Enter Description"
+            name="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="source">Source:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="source"
+            placeholder="Enter Source"
+            name="source"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="destination">Destination:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="destination"
+            placeholder="Enter Destination"
+            name="destination"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="shippingDate">Shipping Date:</label>
+          <input
+            type="date"
+            class="form-control"
+            id="shippingDate"
+            name="shippingDate"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="expectedDeliveryDate">Expected Delivery Date:</label>
+          <input
+            type="date"
+            class="form-control"
+            id="expectedDeliveryDate"
+            name="expectedDeliveryDate"
+          />
+        </div>
+
+        <input
+          type="button"
+          class="btn btn-primary"
+          id="saveButton"
+          value="Save"
+          onclick="saveData();"
+          disabled
+        />
+        <input
+          type="button"
+          class="btn btn-primary"
+          id="updateButton"
+          value="Update"
+          onclick="updateData();"
+          disabled
+        />
+        <input
+          type="button"
+          class="btn btn-primary"
+          id="resetButton"
+          value="Reset"
+          onclick="resetForm();"
+          disabled
+        />
+      </form>
+    </div>
+
+    <script>
+      const connToken = "90934410|-31949230557262165|90957309";
+      const dbName = "DELIVERY-DB";
+      const relationName = "SHIPMENT-TABLE";
+
+      function validateAndGetFormData() {
+        const shipmentNo = $("#shipmentNo").val();
+        if (!shipmentNo) {
+          alert("Shipment No is required.");
+          $("#shipmentNo").focus();
+          return "";
+        }
+
+        const description = $("#description").val();
+        if (!description) {
+          alert("Description is required.");
+          $("#description").focus();
+          return "";
+        }
+
+        const source = $("#source").val();
+        if (!source) {
+          alert("Source is required.");
+          $("#source").focus();
+          return "";
+        }
+
+        const destination = $("#destination").val();
+        if (!destination) {
+          alert("Destination is required.");
+          $("#destination").focus();
+          return "";
+        }
+
+        const shippingDate = $("#shippingDate").val();
+        if (!shippingDate) {
+          alert("Shipping Date is required.");
+          $("#shippingDate").focus();
+          return "";
+        }
+
+        const expectedDeliveryDate = $("#expectedDeliveryDate").val();
+        if (!expectedDeliveryDate) {
+          alert("Expected Delivery Date is required.");
+          $("#expectedDeliveryDate").focus();
+          return "";
+        }
+
+        const jsonData = {
+          shipmentNo,
+          description,
+          source,
+          destination,
+          shippingDate,
+          expectedDeliveryDate,
+        };
+        return JSON.stringify(jsonData);
+      }
+
+      function getShipmentKeyAsJson() {
+        const shipmentNo = $("#shipmentNo").val();
+        return JSON.stringify({ shipmentNo });
+      }
+
+      function resetForm() {
+        $("#shipmentNo").val("").prop("disabled", false);
+        $("#description").val("").prop("disabled", true);
+        $("#source").val("").prop("disabled", true);
+        $("#destination").val("").prop("disabled", true);
+        $("#shippingDate").val("").prop("disabled", true);
+        $("#expectedDeliveryDate").val("").prop("disabled", true);
+
+        $("#saveButton").prop("disabled", true);
+        $("#updateButton").prop("disabled", true);
+        $("#resetButton").prop("disabled", true);
+        $("#shipmentNo").focus();
+      }
+
+      function getShipment() {
+        const shipmentKey = getShipmentKeyAsJson();
+        const getRequest = createGET_BY_KEYRequest(
+          connToken,
+          dbName,
+          relationName,
+          shipmentKey
+        );
+
+        jQuery.ajaxSetup({ async: false });
+        const result = executeCommandAtGivenBaseUrl(
+          getRequest,
+          "http://api.login2explore.com:5577",
+          "/api/irl"
+        );
+        jQuery.ajaxSetup({ async: true });
+
+        if (result.status === 400) {
+          $("#shipmentNo").prop("disabled", false);
+          $("#description, #source, #destination, #shippingDate, #expectedDeliveryDate")
+            .prop("disabled", false);
+          $("#saveButton, #resetButton").prop("disabled", false);
+          $("#description").focus();
+        } else if (result.status === 200) {
+          const record = result.data;
+          $("#shipmentNo").prop("disabled", true);
+          $("#description").val(record.description).prop("disabled", false);
+          $("#source").val(record.source).prop("disabled", false);
+          $("#destination").val(record.destination).prop("disabled", false);
+          $("#shippingDate").val(record.shippingDate).prop("disabled", false);
+          $("#expectedDeliveryDate").val(record.expectedDeliveryDate).prop("disabled", false);
+          $("#updateButton, #resetButton").prop("disabled", false);
+        }
+      }
+
+      function saveData() {
+        const jsonData = validateAndGetFormData();
+        if (!jsonData) return;
+
+        const putRequest = createPUTRequest(connToken, jsonData, dbName, relationName);
+
+        jQuery.ajaxSetup({ async: false });
+        const result = executeCommandAtGivenBaseUrl(
+          putRequest,
+          "http://api.login2explore.com:5577",
+          "/api/iml"
+        );
+        jQuery.ajaxSetup({ async: true });
+
+        alert(JSON.stringify(result));
+        resetForm();
+      }
+
+      function updateData() {
+        const jsonData = validateAndGetFormData();
+        if (!jsonData) return;
+
+        const updateRequest = createUPDATERecordRequest(connToken, jsonData, dbName, relationName);
+
+        jQuery.ajaxSetup({ async: false });
+        const result = executeCommandAtGivenBaseUrl(
+          updateRequest,
+          "http://api.login2explore.com:5577",
+          "/api/iml"
+        );
+        jQuery.ajaxSetup({ async: true });
+
+        alert(JSON.stringify(result));
+        resetForm();
+      }
+
+      $(document).ready(resetForm);
+    </script>
+  </body>
+</html>
