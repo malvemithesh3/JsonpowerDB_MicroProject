@@ -65,12 +65,19 @@ Input:
 json
 Copy code
 {
+  
   "shipmentNo": "SHP004",
+  
   "description": "Electronics shipment for holiday season",
+  
   "source": "San Francisco",
+  
   "destination": "New York",
+  
   "shippingDate": "2024-11-30",
+  
   "expectedDeliveryDate": "2024-12-05"
+
 }
 
 
